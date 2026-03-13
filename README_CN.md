@@ -195,17 +195,18 @@ NARRATIVE_REPORT.md ──► /paper-plan ──► /paper-figure ──► /pap
 
 #### 论文自动润色循环 ✨
 
-工作流 3 生成论文后，`/auto-paper-improvement-loop` 自动跑 2 轮 GPT-5.4 xhigh 审稿 → 修复 → 重新编译，将粗稿自动提升到接近可投稿质量。
+工作流 3 生成论文后，`/auto-paper-improvement-loop` 自动跑 2 轮 GPT-5.4 xhigh 内容审稿 → 修复 → 重编译，外加一轮格式合规检查，将粗稿自动提升到可投稿质量。
 
-**分数变化（实测 — 生成了一篇 9 页 ICLR 2026 理论论文）：**
+**分数变化（实测 — ICLR 2026 理论论文）：**
 
-| 轮次 | 分数 | 判定 | 关键改动 |
-|------|------|------|---------|
-| Round 0（原始） | 4/10 | No | 基线生成论文 |
-| Round 1 | 6/10 | Almost | 修复假设、软化声明、重命名符号 |
-| Round 2 | ~7/10 | Almost→Yes | 添加合成实验、正式化非正式论证 |
+| 轮次 | 分数 | 关键改动 |
+|------|------|---------|
+| Round 0 | 4/10（内容） | 基线生成论文 |
+| Round 1 | 6/10（内容） | 修复假设、软化声明、重命名符号 |
+| Round 2 | 7/10（内容） | 添加合成验证、强化局限性 |
+| Round 3 | 5→8.5/10（格式） | 移除多余图、拆附录、压缩结论、修 overfull hbox |
 
-**2 轮涨 3 分** —— 从 "明确拒稿" 到 "borderline accept"。
+**最终：正文 8 页（ICLR 限 9 页），0 个 overfull hbox，格式合规。** 3 轮共涨 4.5 分。
 
 <details>
 <summary>Round 1 修复细节（6 项）</summary>
@@ -229,7 +230,21 @@ NARRATIVE_REPORT.md ──► /paper-plan ──► /paper-figure ──► /pap
 
 </details>
 
-三个 PDF 均保留可对比：`main_round0_original.pdf`、`main_round1.pdf`、`main_round2.pdf`。
+<details>
+<summary>Round 3 格式修复（8 项）</summary>
+
+1. 移除多余的 hero figure（省 ~0.7 页）
+2. 压缩结论 15→9 行
+3. 合成验证移至附录 A
+4. 对比表格移至附录 B
+5. 修复 overfull hbox (85pt)，用 `\resizebox`
+6. 添加紧凑 float spacing（`\captionsetup`、`\textfloatsep`）
+7. Introduction 中行内化居中问题块
+8. 收紧 `itemize` 环境间距
+
+</details>
+
+四个 PDF 均保留可对比：`main_round0_original.pdf`、`main_round1.pdf`、`main_round2.pdf`、`main_round3.pdf`。
 
 ---
 
@@ -252,7 +267,7 @@ NARRATIVE_REPORT.md ──► /paper-plan ──► /paper-figure ──► /pap
 | 📊 [`paper-figure`](skills/paper-figure/SKILL.md) | 从实验数据生成出版级 matplotlib/seaborn 图表，含 LaTeX 插入代码 | 可选 |
 | ✍️ [`paper-write`](skills/paper-write/SKILL.md) | 逐 section LaTeX 生成，支持 ICLR/NeurIPS/ICML 模板 | 是 |
 | 🔨 [`paper-compile`](skills/paper-compile/SKILL.md) | 编译 LaTeX 为 PDF，自动修复错误，投稿就绪检查 | 否 |
-| 🔄 [`auto-paper-improvement-loop`](skills/auto-paper-improvement-loop/SKILL.md) | 2 轮审稿→修复→重编译循环（4/10 → 7/10） | 是 |
+| 🔄 [`auto-paper-improvement-loop`](skills/auto-paper-improvement-loop/SKILL.md) | 2 轮内容审稿 + 格式检查循环（4/10 → 8.5/10） | 是 |
 | 📝 [`paper-writing`](skills/paper-writing/SKILL.md) | **工作流 3 全流程**：paper-plan → paper-figure → paper-write → paper-compile → auto-paper-improvement-loop | 是 |
 
 ---

@@ -253,17 +253,18 @@ The output is a ranked `IDEA_REPORT.md` with hypotheses, pilot results, reviewer
 
 #### Auto Paper Improvement Loop ✨
 
-After Workflow 3 generates the paper, `/auto-paper-improvement-loop` runs 2 rounds of GPT-5.4 xhigh review → fix → recompile, autonomously polishing the paper from rough draft to near-submission quality.
+After Workflow 3 generates the paper, `/auto-paper-improvement-loop` runs 2 rounds of GPT-5.4 xhigh content review → fix → recompile, plus a final format compliance check, autonomously polishing the paper from rough draft to submission-ready.
 
-**Score Progression (Real Test — generated a 9-page ICLR 2026 theory paper):**
+**Score Progression (Real Test — ICLR 2026 theory paper):**
 
-| Round | Score | Verdict | Key Changes |
-|-------|-------|---------|-------------|
-| Round 0 (original) | 4/10 | No | Baseline generated paper |
-| Round 1 | 6/10 | Almost | Fixed assumptions, softened overclaims, renamed notation |
-| Round 2 | ~7/10 | Almost→Yes | Added synthetic experiments, formal truncation proposition |
+| Round | Score | Key Changes |
+|-------|-------|-------------|
+| Round 0 | 4/10 (content) | Baseline |
+| Round 1 | 6/10 (content) | Fixed assumptions, softened claims, renamed notation |
+| Round 2 | 7/10 (content) | Added synthetic validation, stronger limitations |
+| Round 3 | 5→8.5/10 (format) | Removed hero fig, appendix, compressed conclusion, float spacing |
 
-**+3 points in 2 rounds** — from "clear reject" to "borderline accept."
+**Final: 8 pages main body (ICLR limit: 9), 0 overfull hbox, ICLR-compliant.** +4.5 points across 3 rounds.
 
 <details>
 <summary>Round 1 fixes (6 items)</summary>
@@ -287,7 +288,21 @@ After Workflow 3 generates the paper, `/auto-paper-improvement-loop` runs 2 roun
 
 </details>
 
-All three PDFs preserved for comparison: `main_round0_original.pdf`, `main_round1.pdf`, `main_round2.pdf`.
+<details>
+<summary>Round 3 format fixes (8 items)</summary>
+
+1. Removed hero figure block (saved ~0.7 pages)
+2. Compressed conclusion from 15→9 lines
+3. Moved synthetic validation to Appendix A
+4. Moved comparison tables to Appendix B
+5. Fixed overfull hbox (85pt) with `\resizebox`
+6. Added compact float spacing (`\captionsetup`, `\textfloatsep`)
+7. Inlined centered question block in introduction
+8. Tightened `itemize` environments
+
+</details>
+
+All four PDFs preserved for comparison: `main_round0_original.pdf`, `main_round1.pdf`, `main_round2.pdf`, `main_round3.pdf`.
 
 ---
 
@@ -310,7 +325,7 @@ All three PDFs preserved for comparison: `main_round0_original.pdf`, `main_round
 | 📊 [`paper-figure`](skills/paper-figure/SKILL.md) | Publication-quality matplotlib/seaborn plots from experiment data, with LaTeX snippets | Optional |
 | ✍️ [`paper-write`](skills/paper-write/SKILL.md) | Section-by-section LaTeX generation with ICLR/NeurIPS/ICML templates | Yes |
 | 🔨 [`paper-compile`](skills/paper-compile/SKILL.md) | Compile LaTeX to PDF, auto-fix errors, submission readiness checks | No |
-| 🔄 [`auto-paper-improvement-loop`](skills/auto-paper-improvement-loop/SKILL.md) | 2-round review→fix→recompile loop on generated paper (4/10 → 7/10) | Yes |
+| 🔄 [`auto-paper-improvement-loop`](skills/auto-paper-improvement-loop/SKILL.md) | 2-round content review + format check loop on generated paper (4/10 → 8.5/10) | Yes |
 | 📝 [`paper-writing`](skills/paper-writing/SKILL.md) | **Workflow 3 pipeline**: paper-plan → paper-figure → paper-write → paper-compile → auto-paper-improvement-loop | Yes |
 
 ---
