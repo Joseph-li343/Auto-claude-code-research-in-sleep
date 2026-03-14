@@ -37,6 +37,7 @@ cp -r Auto-claude-code-research-in-sleep/skills/* ~/.claude/skills/
 
 # 2. 配置 Codex MCP（review 类 skill 需要）
 npm install -g @openai/codex
+codex setup                    # 提示选模型时选 gpt-5.4
 claude mcp add codex -s user -- codex mcp-server
 
 # 3. 在 Claude Code 中使用
@@ -48,6 +49,8 @@ claude
 ```
 
 > **提示：** 工作流默认在每个阶段暂停等待确认。添加 `AUTO_PROCEED=true` 可全自动运行（适合睡前挂机）。
+
+> **重要：** Codex MCP 使用的模型取决于 `~/.codex/config.toml`，而非 skill 文件中的设置。请确认其中写的是 `model = "gpt-5.4"`，否则可能默认使用 `gpt-4o`。运行 `codex setup` 或直接编辑该文件。
 
 详见[完整安装指南](#%EF%B8%8F-安装)和[替代模型组合](#-替代模型组合)（无需 Claude/OpenAI API）。
 
