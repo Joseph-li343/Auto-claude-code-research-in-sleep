@@ -854,7 +854,7 @@ Codex CLI uses your existing `OPENAI_API_KEY` (from `~/.codex/config.toml` or en
 }
 ```
 
-> **⚠️ Extra step for Alt B:** Codex MCP uses OpenAI's Responses API (`/v1/responses`), which MiniMax does not support ([details](https://github.com/openai/codex/discussions/7782)). So Alt B uses a **custom MiniMax MCP server** instead of Codex. You need to:
+> **⚠️ Extra step for Alt B:** Codex MCP uses OpenAI's Responses API (`/v1/responses`), which MiniMax does not support ([details](https://github.com/openai/codex/discussions/7782)). So Alt B uses a **custom MiniMax MCP server** instead of Codex. Full guide: [`docs/MINIMAX_MCP_GUIDE.md`](docs/MINIMAX_MCP_GUIDE.md). Quick steps:
 >
 > 1. Copy `mcp-servers/minimax-chat/server.py` → `~/.claude/mcp-servers/minimax-chat/server.py`
 > 2. `pip3 install httpx`
@@ -866,8 +866,6 @@ Codex CLI uses your existing `OPENAI_API_KEY` (from `~/.codex/config.toml` or en
 > Now rewrite ALL other skills that use mcp__codex__codex / mcp__codex__codex-reply
 > to use mcp__minimax-chat__minimax_chat instead, following the same pattern.
 > ```
->
-> Full guide: [`docs/MINIMAX_MCP_GUIDE.md`](docs/MINIMAX_MCP_GUIDE.md)
 
 </details>
 
