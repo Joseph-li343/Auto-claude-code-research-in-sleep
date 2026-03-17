@@ -167,7 +167,7 @@ These skills compose into a full research lifecycle. The three workflows can be 
 ```
 /research-lit → /idea-creator → /novelty-check → /research-refine → /experiment-bridge → /auto-review-loop → /paper-plan → /paper-figure → /paper-write → /auto-paper-improvement-loop → submit
   (survey)      (brainstorm)    (verify novel)   (refine method)   (implement+deploy)  (review & fix)      (outline)     (plots)        (LaTeX+PDF)     (review ×2 + format)     (done!)
-  ├────────────── Workflow 1: Idea Discovery ──────────────┤ ├── 1.5: Bridge ──┤ ├── Workflow 2 ──┤   ├──────────────── Workflow 3: Paper Writing ──────────────────┤
+  ├────────────── Workflow 1: Idea Discovery ──────────────┤ ├ Workflow 1.5 ─┤ ├── Workflow 2 ──┤   ├──────────────── Workflow 3: Paper Writing ──────────────────┤
 ```
 
 📝 **Blog post:** [梦中科研全流程开源](http://xhslink.com/o/2iV33fYoc7Q)
